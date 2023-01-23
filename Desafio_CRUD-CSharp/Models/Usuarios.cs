@@ -17,10 +17,17 @@ namespace Desafio_CRUD_CSharp.Models
         public int IdUsuario { get; set; }
         public string Nome { get; set; }
         public string Empresa { get; set; }
+
+        internal static object Where(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
+        }
+
         public string Email { get; set; }
         public Nullable<long> TelefonePessoal { get; set; }
         public Nullable<long> TelefoneComercial { get; set; }
         public Nullable<System.DateTime> Created { get; set; }
         public Nullable<System.DateTime> Modified { get; set; }
+        public static int UsuarioId { get; internal set; }
     }
 }

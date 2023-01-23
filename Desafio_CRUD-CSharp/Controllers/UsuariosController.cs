@@ -17,11 +17,21 @@ namespace Desafio_CRUD_CSharp.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            return View(db.Usuarios.ToList());
+            return View(db.Usuarios.ToList()); // EE converte em comando sql select
         }
 
-        // GET: Usuarios/Details/5
-        public ActionResult Details(int? id)
+        //public ViewResult Index(string searchString, object Nome)
+
+        //{
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        Nome = Usuarios.Where(s => s.LastName.Contains(searchString)
+        //                               || s.FirstMidName.Contains(searchString));
+        //    }
+        //}
+
+            // GET: Usuarios/Details/5
+            public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -51,6 +61,7 @@ namespace Desafio_CRUD_CSharp.Controllers
             if (ModelState.IsValid)
             {
                 db.Usuarios.Add(usuarios);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
