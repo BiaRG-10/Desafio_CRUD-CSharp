@@ -1,12 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Cadastro de Contatos</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
+    <!--novo-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" />
+    <link rel="stylesheet" href="~/Scripts/filtro.js" />
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,8 +28,8 @@
                 <ul class="nav navbar-nav">
                     @*<li>Cadastro de Contato</li>*@
                     @*<li>@Html.ActionLink("Início", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>*@
+                        <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contato", "Contact", "Home")</li>*@
                 </ul>
             </div>
         </div>
@@ -39,6 +44,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <!--novo-->
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
