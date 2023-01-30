@@ -4,7 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" />
+<link rel="stylesheet" href="~/Scripts/filtro.js" />
 
 <h2>Contatos</h2>
 
@@ -13,12 +14,12 @@
 </p>
 
 @*@using (Html.BeginForm())
-{
-    <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}*@
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }*@
 
 <table class="table" id="table-usuarios">
     <tr>

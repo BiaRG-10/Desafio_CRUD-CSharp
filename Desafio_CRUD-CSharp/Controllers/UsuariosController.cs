@@ -14,10 +14,12 @@ namespace Desafio_CRUD_CSharp.Controllers
     {
         private CadastroContatoDBEntities db = new CadastroContatoDBEntities();
 
+        public object Nome { get; private set; }
+
         // GET: Usuarios
         public ActionResult Index()
         {
-            return View(db.Usuarios.ToList()); // EE converte em comando sql select
+            return View(db.Usuarios.ToList()); // converte em comando sql select
         }
 
         //public ViewResult Index(string searchString, object Nome)
@@ -63,6 +65,7 @@ namespace Desafio_CRUD_CSharp.Controllers
                 db.Usuarios.Add(usuarios);
 
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 

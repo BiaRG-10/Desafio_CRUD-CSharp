@@ -11,11 +11,15 @@ namespace Desafio_CRUD_CSharp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Usuarios
     {
         public int IdUsuario { get; set; }
-        public string Nome { get; set; }
+
+        [Required(ErrorMessage = "O preenchimento do campo Nome é obrigatório!")]
+        [StringLength(100, ErrorMessage = "O nome deve possuir no máximo 100 caracteres")]
+        public string Nome { get; set; } 
         public string Empresa { get; set; }
         public string Email { get; set; }
         public Nullable<long> TelefonePessoal { get; set; }
