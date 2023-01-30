@@ -58,7 +58,7 @@ namespace Desafio_CRUD_CSharp.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdUsuario,Nome,Empresa,Email,TelefonePessoal,TelefoneComercial,Created,Modified")] Usuarios usuarios)
+        public ActionResult Create([Bind(Include = "Nome,Empresa,Email,TelefonePessoal,TelefoneComercial,Created,Modified")] Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace Desafio_CRUD_CSharp.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdUsuario,Nome,Empresa,Email,TelefonePessoal,TelefoneComercial,Created,Modified")] Usuarios usuarios)
+        public ActionResult Edit([Bind(Include = "Nome,Empresa,Email,TelefonePessoal,TelefoneComercial,Created,Modified")] Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {

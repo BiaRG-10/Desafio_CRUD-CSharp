@@ -1,7 +1,7 @@
 ﻿@model Desafio_CRUD_CSharp.Models.Usuarios
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Adicionar";
 }
 
 <h2>Adicionar</h2>
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Usuario</h4>
+        @*<h4>Usuario</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<div class="form-group">
