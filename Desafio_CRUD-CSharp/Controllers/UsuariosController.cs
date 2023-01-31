@@ -16,20 +16,119 @@ namespace Desafio_CRUD_CSharp.Controllers
 
         public object Nome { get; private set; }
 
+        // original substituido
+
         // GET: Usuarios
-        public ActionResult Index()
-        {
-            return View(db.Usuarios.ToList()); // converte em comando sql select
-        }
+        //public ActionResult Index() 
+        //{
+        //    return View(db.Usuarios.ToList()); // converte em comando sql select
+        //}
 
-        public ViewResult Index(string searchString, object SearchString) // arrumar
 
+        // novo ordenação
+        public ViewResult Index(string Ordenacao, string searchString)
         {
+
+            ViewBag.NomeOrdenacaoParm = string.IsNullOrEmpty(Ordenacao) ? "Nome desc" : "";
+            ViewBag.EmpresaOrdenacaoParm = Ordenacao == "Empresa desc" ? "Empresa desc" : "Empresa";
+            ViewBag.EmailOrdenacaoParm = Ordenacao == "Email desc" ? "Email desc" : "Email";
+            ViewBag.TelefonePessoalOrdenacaoParm = Ordenacao == "Telefone Pessoal desc" ? "Telefone Pessoal desc" : "Telefone Pessoal";
+            ViewBag.TelefoneComercialOrdenacaoParm = Ordenacao == "Telefone Comercial desc" ? "Telefone Comercial desc" : "Telefone Comercial";
+
+            var contatos = from est in db.Usuarios
+                             select est;
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                Nome = Usuarios.Where(s => s.LastName.Contains(searchString) || s.FirstMidName.Contains(searchString));
+                contatos = Usuarios.Where(est => est.Nome.ToUpper().Contains(searchString.ToUpper) || est.Nome.Contains(searchString)); // arrumar
             }
+
+            switch (Ordenacao)
+            {
+                case "Nome desc":
+                    {
+                        contatos = contatos.OrderByDescending(est => est.Nome);
+                        break;
+                        break;
+                    }
+
+                case "Empresa":
+                    {
+                        contatos = contatos.OrderBy(est => est.Empresa);
+                        break;
+                        break;
+                    }
+
+                case "Empresa desc":
+                    {
+                        contatos = contatos.OrderByDescending(est => est.Empresa);
+                        break;
+                        break;
+                    }
+
+                case "Email":
+                    {
+                        contatos = contatos.OrderBy(est => est.Email);
+                        break;
+                        break;
+                    }
+
+                case "Email desc":
+                    {
+                        contatos = contatos.OrderByDescending(est => est.Email);
+                        break;
+                        break;
+                    }
+
+                case "Telefone Pessoal":
+                    {
+                        contatos = contatos.OrderBy(est => est.TelefonePessoal);
+                        break;
+                        break;
+                    }
+
+                case "Telefone Pessoal desc":
+                    {
+                        contatos = contatos.OrderByDescending(est => est.TelefonePessoal);
+                        break;
+                        break;
+                    }
+
+                case "Telefone Comercial":
+                    {
+                        contatos = contatos.OrderBy(est => est.TelefoneComercial);
+                        break;
+                        break;
+                    }
+
+                case "Telefone Comercial desc":
+                    {
+                        contatos = contatos.OrderByDescending(est => est.TelefoneComercial);
+                        break;
+                        break;
+                    }
+
+                default:
+                    {
+                        contatos = contatos.OrderBy(est => est.Nome);
+                        break;
+                        break;
+                    }
+            }
+            return View(contatos.ToList());
         }
+
+
+        // arrumar pesquisa
+
+        //public ViewResult Index(string searchString, object LastName ) 
+
+        //{
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        Nome = Usuarios.Where(s => s.LastName.Contains(searchString) || s.FirstMidName.Contains(searchString));
+        //    }
+        //}
 
         // GET: Usuarios/Details/5
         public ActionResult Details(int? id)

@@ -13,39 +13,81 @@
     @Html.ActionLink("Adicionar", "Create")
 </p>
 
-@*@using (Html.BeginForm())
-    {
+@using (Html.BeginForm())
+{
         <p>
             @Html.TextBox("SearchString")
             <input type="submit" value="Filtrar" />
         </p>
-    }*@
+}
 
 <table class="table" id="table-usuarios">
     <tr>
+    <tr>
+
         <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Empresa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TelefonePessoal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TelefoneComercial)
+            @Html.ActionLink("Nome", "Index", new { Ordenacao = ViewBag.NomeOrdenacaoParm })
         </th>
         @*<th>
-                @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Modified)
-            </th>*@
-        <th></th>
+            Nome
+        </th>*@
+        <th>
+            @Html.ActionLink("Empresa", "Index", new { Ordenacao = ViewBag.EmpresaOrdenacaoParm })
+        </th>
+        @*<th>
+            Empresa
+        </th>*@
+        <th>
+            @Html.ActionLink("Email", "Index", new { Ordenacao = ViewBag.EmailOrdenacaoParm })
+        </th>
+        @*<th>
+            Email
+        </th>*@
+        <th>
+            @Html.ActionLink("TelefonePessoal", "Index", new { Ordenacao = ViewBag.TelefonePessoalOrdenacaoParm })
+        </th>
+        @*<th>
+            Telefone Pessoal
+        </th>*@
+        <th>
+            @Html.ActionLink("TelefoneComercial", "Index", new { Ordenacao = ViewBag.TelefoneComercialOrdenacaoParm })
+        </th>
+        @*<th>
+            Telefone Comercial
+        </th>*@
+
     </tr>
+
+
+    @*original*@
+    <!--<th> 
+        @Html.DisplayNameFor(model => model.Nome)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Empresa)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Email)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.TelefonePessoal)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.TelefoneComercial)
+    </th>
+    <th>
+        Ações
+    </th>-->
+
+    @*<th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modified)
+        </th>*@
+
+    <!--<th></th>
+    </tr>-->
 
     @foreach (var item in Model)
     {
@@ -65,6 +107,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TelefoneComercial)
             </td>
+
             @*<td>
                     @Html.DisplayFor(modelItem => item.Created)
                 </td>
@@ -82,8 +125,8 @@
 </table>
 
 <script>
-    $(document).ready(function () {
-        $('#table-usuarios').DataTable();
-    });
+   $(document).ready(function(){
+       $('#table-usuarios').DataTable();
+   });
 </script>
 
