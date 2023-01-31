@@ -7,10 +7,25 @@
     <title>@ViewBag.Title - Cadastro de Contatos</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/DataTable/dataTables.jqueryui.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/DataTables/css/dataTables.dataTables.css />
+    <script type="text/javascript" src="~/Scripts/DataTable/jquery.dataTables.js"></script>
+
+
+    @*@Scripts.Render("~/Scripts/filtro.js")*@
+
     <!--novo-->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" />
-    <link rel="stylesheet" href="~/Scripts/filtro.js" />
+    
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>
+    <link rel="stylesheet" href="~/Scripts/filtro.js" />*@
+
+
 
 </head>
 <body>
@@ -44,8 +59,11 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    @*@Scripts.Render("~/Scripts/filtro.js")*@
     <!--novo-->
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/datatables.min.js"></script>*@
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

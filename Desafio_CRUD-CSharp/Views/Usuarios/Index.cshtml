@@ -4,8 +4,8 @@
     ViewBag.Title = "Home";
 }
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.13.1/datatables.min.css" />
-<link rel="stylesheet" href="~/Scripts/filtro.js" />
+@*<link rel="stylesheet" type="text/css" href="~/Content/datatables.min.css"/>
+<script type="text/javascript" src="~/Scripts/filtro.js"></script>*@
 
 <h2>Contatos</h2>
 
@@ -16,8 +16,8 @@
 @*@using (Html.BeginForm())
     {
         <p>
-            Find by name: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
+            @Html.TextBox("SearchString")
+            <input type="submit" value="Filtrar" />
         </p>
     }*@
 
@@ -73,10 +73,17 @@
                 </td>*@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.IdUsuario }) |
-                @Html.ActionLink("Detalhes", "Details", new { id = item.IdUsuario }) |
+                @Html.ActionLink("Consultar", "Details", new { id = item.IdUsuario }) |
                 @Html.ActionLink("Excluir", "Delete", new { id = item.IdUsuario })
             </td>
         </tr>
     }
 
 </table>
+
+<script>
+    $(document).ready(function () {
+        $('#table-usuarios').DataTable();
+    });
+</script>
+

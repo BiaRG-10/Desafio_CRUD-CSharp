@@ -22,18 +22,17 @@ namespace Desafio_CRUD_CSharp.Controllers
             return View(db.Usuarios.ToList()); // converte em comando sql select
         }
 
-        //public ViewResult Index(string searchString, object Nome)
+        public ViewResult Index(string searchString, object SearchString) // arrumar
 
-        //{
-        //    if (!String.IsNullOrEmpty(searchString))
-        //    {
-        //        Nome = Usuarios.Where(s => s.LastName.Contains(searchString)
-        //                               || s.FirstMidName.Contains(searchString));
-        //    }
-        //}
+        {
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Nome = Usuarios.Where(s => s.LastName.Contains(searchString) || s.FirstMidName.Contains(searchString));
+            }
+        }
 
-            // GET: Usuarios/Details/5
-            public ActionResult Details(int? id)
+        // GET: Usuarios/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {

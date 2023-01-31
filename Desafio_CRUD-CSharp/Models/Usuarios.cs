@@ -20,6 +20,11 @@ namespace Desafio_CRUD_CSharp.Models
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)] // define propriedade autoincrement
         public int IdUsuario { get; set; }
 
+        internal static object Where(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
+        }
+
         [Required(ErrorMessage = "O preenchimento do campo Nome é obrigatório")]
         [StringLength(100, ErrorMessage = "O nome deve possuir no máximo 100 caracteres")]
         public string Nome { get; set; }
