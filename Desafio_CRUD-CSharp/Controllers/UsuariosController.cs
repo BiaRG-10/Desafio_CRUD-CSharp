@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Desafio_CRUD_CSharp.Models;
+using PagedList;
 
 namespace Desafio_CRUD_CSharp.Controllers
 {
@@ -26,21 +27,32 @@ namespace Desafio_CRUD_CSharp.Controllers
 
 
         // novo ordenação
-        public ViewResult Index(string Ordenacao, string searchString)
+        public ViewResult Index(string Ordenacao, string searchString, string currentFilter, int? page)
         {
-
+            ViewBag.CurrentSort = Ordenacao;
             ViewBag.NomeOrdenacaoParm = string.IsNullOrEmpty(Ordenacao) ? "Nome desc" : "";
-            ViewBag.EmpresaOrdenacaoParm = Ordenacao == "Empresa desc" ? "Empresa desc" : "Empresa";
+            ViewBag.EmpresaOrdenacaoParm = Ordenacao == "Empresa" ? "Empresa desc" : "Empresa";
             ViewBag.EmailOrdenacaoParm = Ordenacao == "Email desc" ? "Email desc" : "Email";
-            ViewBag.TelefonePessoalOrdenacaoParm = Ordenacao == "Telefone Pessoal desc" ? "Telefone Pessoal desc" : "Telefone Pessoal";
-            ViewBag.TelefoneComercialOrdenacaoParm = Ordenacao == "Telefone Comercial desc" ? "Telefone Comercial desc" : "Telefone Comercial";
+
+            //ViewBag.TelefonePessoalOrdenacaoParm = Ordenacao == "Telefone Pessoal desc" ? "Telefone Pessoal desc" : "Telefone Pessoal";
+            //ViewBag.TelefoneComercialOrdenacaoParm = Ordenacao == "Telefone Comercial desc" ? "Telefone Comercial desc" : "Telefone Comercial";
+
+            if (searchString != null)
+            {
+                page = 1; 
+            } else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             var contatos = from est in db.Usuarios
                              select est;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                contatos = Usuarios.Where(est => est.Nome.ToUpper().Contains(searchString.ToUpper) || est.Nome.Contains(searchString)); // arrumar
+                contatos = Usuarios.Where(est => est.Nome.ToUpper().Contains(searchString.ToUpper()) || est.Nome.ToUpper().Contains(searchString.ToUpper())); // arrumar
             }
 
             switch (Ordenacao)
@@ -49,13 +61,11 @@ namespace Desafio_CRUD_CSharp.Controllers
                     {
                         contatos = contatos.OrderByDescending(est => est.Nome);
                         break;
-                        break;
                     }
 
                 case "Empresa":
                     {
                         contatos = contatos.OrderBy(est => est.Empresa);
-                        break;
                         break;
                     }
 
@@ -63,13 +73,11 @@ namespace Desafio_CRUD_CSharp.Controllers
                     {
                         contatos = contatos.OrderByDescending(est => est.Empresa);
                         break;
-                        break;
                     }
 
                 case "Email":
                     {
                         contatos = contatos.OrderBy(est => est.Email);
-                        break;
                         break;
                     }
 
@@ -77,58 +85,43 @@ namespace Desafio_CRUD_CSharp.Controllers
                     {
                         contatos = contatos.OrderByDescending(est => est.Email);
                         break;
-                        break;
                     }
 
-                case "Telefone Pessoal":
-                    {
-                        contatos = contatos.OrderBy(est => est.TelefonePessoal);
-                        break;
-                        break;
-                    }
+                    // não precisa
+                //case "Telefone Pessoal":
+                //    {
+                //        contatos = contatos.OrderBy(est => est.TelefonePessoal);
+                //        break;
+                //    }
 
-                case "Telefone Pessoal desc":
-                    {
-                        contatos = contatos.OrderByDescending(est => est.TelefonePessoal);
-                        break;
-                        break;
-                    }
+                //case "Telefone Pessoal desc":
+                //    {
+                //        contatos = contatos.OrderByDescending(est => est.TelefonePessoal);
+                //        break;
+                //    }
 
-                case "Telefone Comercial":
-                    {
-                        contatos = contatos.OrderBy(est => est.TelefoneComercial);
-                        break;
-                        break;
-                    }
+                //case "Telefone Comercial":
+                //    {
+                //        contatos = contatos.OrderBy(est => est.TelefoneComercial);
+                //        break;
+                //    }
 
-                case "Telefone Comercial desc":
-                    {
-                        contatos = contatos.OrderByDescending(est => est.TelefoneComercial);
-                        break;
-                        break;
-                    }
+                //case "Telefone Comercial desc":
+                //    {
+                //        contatos = contatos.OrderByDescending(est => est.TelefoneComercial);
+                //        break;
+                //    }
 
                 default:
                     {
                         contatos = contatos.OrderBy(est => est.Nome);
                         break;
-                        break;
                     }
             }
-            return View(contatos.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(contatos.ToPagedList(pageNumber, pageSize));
         }
-
-
-        // arrumar pesquisa
-
-        //public ViewResult Index(string searchString, object LastName ) 
-
-        //{
-        //    if (!String.IsNullOrEmpty(searchString))
-        //    {
-        //        Nome = Usuarios.Where(s => s.LastName.Contains(searchString) || s.FirstMidName.Contains(searchString));
-        //    }
-        //}
 
         // GET: Usuarios/Details/5
         public ActionResult Details(int? id)

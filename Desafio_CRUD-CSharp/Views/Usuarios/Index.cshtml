@@ -1,11 +1,15 @@
-﻿@model IEnumerable<Desafio_CRUD_CSharp.Models.Usuarios>
+﻿@*@using PagedList.Mvc;
+@model PagedList.IPagedList<Desafio_CRUD_CSharp.Models.Usuarios>*@
+
+
+@model IEnumerable<Desafio_CRUD_CSharp.Models.Usuarios>
 
 @{
     ViewBag.Title = "Home";
 }
 
 @*<link rel="stylesheet" type="text/css" href="~/Content/datatables.min.css"/>
-<script type="text/javascript" src="~/Scripts/filtro.js"></script>*@
+    <script type="text/javascript" src="~/Scripts/filtro.js"></script>*@
 
 <h2>Contatos</h2>
 
@@ -13,12 +17,12 @@
     @Html.ActionLink("Adicionar", "Create")
 </p>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Usuarios", FormMethod.Get))
 {
-        <p>
-            @Html.TextBox("SearchString")
-            <input type="submit" value="Filtrar" />
-        </p>
+    <p>
+        @Html.TextBox("SearchString")
+        <input type="submit" value="Filtrar" />
+    </p>
 }
 
 <table class="table" id="table-usuarios">
@@ -28,57 +32,37 @@
         <th>
             @Html.ActionLink("Nome", "Index", new { Ordenacao = ViewBag.NomeOrdenacaoParm })
         </th>
-        @*<th>
-            Nome
-        </th>*@
+
         <th>
             @Html.ActionLink("Empresa", "Index", new { Ordenacao = ViewBag.EmpresaOrdenacaoParm })
         </th>
-        @*<th>
-            Empresa
-        </th>*@
+
         <th>
             @Html.ActionLink("Email", "Index", new { Ordenacao = ViewBag.EmailOrdenacaoParm })
         </th>
+
         @*<th>
-            Email
+            @Html.ActionLink("Telefone Pessoal", "Index", new { Ordenacao = ViewBag.TelefonePessoalOrdenacaoParm })
         </th>*@
         <th>
-            @Html.ActionLink("TelefonePessoal", "Index", new { Ordenacao = ViewBag.TelefonePessoalOrdenacaoParm })
-        </th>
-        @*<th>
             Telefone Pessoal
-        </th>*@
-        <th>
-            @Html.ActionLink("TelefoneComercial", "Index", new { Ordenacao = ViewBag.TelefoneComercialOrdenacaoParm })
         </th>
         @*<th>
-            Telefone Comercial
+        @Html.ActionLink("Telefone Comercial", "Index", new { Ordenacao = ViewBag.TelefoneComercialOrdenacaoParm })
         </th>*@
+        <th>
+            Telefone Comercial
+        </th>
+        <th>
+            Ações
+        </th>
+        <th></th>
 
     </tr>
 
 
     @*original*@
-    <!--<th> 
-        @Html.DisplayNameFor(model => model.Nome)
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.Empresa)
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.Email)
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.TelefonePessoal)
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.TelefoneComercial)
-    </th>
-    <th>
-        Ações
-    </th>-->
-
+    
     @*<th>
             @Html.DisplayNameFor(model => model.Created)
         </th>
@@ -86,8 +70,6 @@
             @Html.DisplayNameFor(model => model.Modified)
         </th>*@
 
-    <!--<th></th>
-    </tr>-->
 
     @foreach (var item in Model)
     {
@@ -124,9 +106,13 @@
 
 </table>
 
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount 
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, Ordenacao = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))*@
+
 <script>
-   $(document).ready(function(){
-       $('#table-usuarios').DataTable();
-   });
+    $(document).ready(function () {
+        $("#table-usuarios").DataTable();
+    });
 </script>
 
