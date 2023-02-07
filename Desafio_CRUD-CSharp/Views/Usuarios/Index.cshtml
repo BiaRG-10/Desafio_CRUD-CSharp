@@ -1,8 +1,8 @@
-﻿@*@using PagedList.Mvc;
-@model PagedList.IPagedList<Desafio_CRUD_CSharp.Models.Usuarios>*@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Desafio_CRUD_CSharp.Models.Usuarios>
 
 
-@model IEnumerable<Desafio_CRUD_CSharp.Models.Usuarios>
+@*@model IEnumerable<Desafio_CRUD_CSharp.Models.Usuarios>*@
 
 @{
     ViewBag.Title = "Home";
@@ -56,7 +56,7 @@
         <th>
             Ações
         </th>
-        <th></th>
+        @*<th></th>*@
 
     </tr>
 
@@ -106,12 +106,12 @@
 
 </table>
 
-@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount 
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount 
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, Ordenacao = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))*@
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, Ordenacao = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#table-usuarios").DataTable();
     });
 </script>

@@ -52,7 +52,9 @@ namespace Desafio_CRUD_CSharp.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                contatos = Usuarios.Where(est => est.Nome.ToUpper().Contains(searchString.ToUpper()) || est.Nome.ToUpper().Contains(searchString.ToUpper())); // arrumar
+                contatos = Usuarios.Where(est => est.Nome.ToUpper().Contains(searchString.ToUpper()) || est.Empresa.ToLower().Contains(searchString.ToUpper())
+                    || est.Email.ToLower().Contains(searchString.ToUpper() || est.TelefonePessoal.ToLower().Contains(searchString.ToUpper)
+                    || est.TelefoneComercial.ToLower().Contains(searchString.ToUpper))); // arrumar
             }
 
             switch (Ordenacao)
@@ -87,7 +89,7 @@ namespace Desafio_CRUD_CSharp.Controllers
                         break;
                     }
 
-                    // não precisa
+                // não precisa
                 //case "Telefone Pessoal":
                 //    {
                 //        contatos = contatos.OrderBy(est => est.TelefonePessoal);
