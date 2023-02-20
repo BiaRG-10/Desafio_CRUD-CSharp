@@ -52,40 +52,31 @@ namespace Desafio_CRUD_CSharp.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                contatos = Usuarios.Where(est => est.Nome.ToUpper().Contains(searchString.ToUpper()) || est.Nome.ToUpper().Contains(searchString.ToUpper())); // arrumar
+                contatos = contatos.Where(est => est.Nome.ToUpper().Contains(searchString.ToUpper()) || est.Nome.ToUpper().Contains(searchString.ToUpper())); // arrumar
             }
 
             switch (Ordenacao)
             {
                 case "Nome desc":
-                    {
-                        contatos = contatos.OrderByDescending(est => est.Nome);
-                        break;
-                    }
+                    contatos = contatos.OrderByDescending(est => est.Nome);
+                    break;     
 
                 case "Empresa":
-                    {
-                        contatos = contatos.OrderBy(est => est.Empresa);
-                        break;
-                    }
+                    contatos = contatos.OrderBy(est => est.Empresa);
+                    break;
 
                 case "Empresa desc":
-                    {
-                        contatos = contatos.OrderByDescending(est => est.Empresa);
-                        break;
-                    }
+
+                    contatos = contatos.OrderByDescending(est => est.Empresa);
+                    break;
 
                 case "Email":
-                    {
-                        contatos = contatos.OrderBy(est => est.Email);
-                        break;
-                    }
+                    contatos = contatos.OrderBy(est => est.Email);
+                    break;
 
                 case "Email desc":
-                    {
-                        contatos = contatos.OrderByDescending(est => est.Email);
-                        break;
-                    }
+                     contatos = contatos.OrderByDescending(est => est.Email);
+                     break;
 
                     // não precisa
                 //case "Telefone Pessoal":
@@ -113,10 +104,8 @@ namespace Desafio_CRUD_CSharp.Controllers
                 //    }
 
                 default:
-                    {
                         contatos = contatos.OrderBy(est => est.Nome);
                         break;
-                    }
             }
             int pageSize = 3;
             int pageNumber = (page ?? 1);

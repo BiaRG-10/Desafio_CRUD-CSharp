@@ -110,9 +110,9 @@
 
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, Ordenacao = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))*@
 
-<script>
-    $(document).ready(function () {
+@*<script>
+    $(document).ready(function() {
         $("#table-usuarios").DataTable();
     });
-</script>
+</script>*@
 
