@@ -17,7 +17,7 @@ namespace Desafio_CRUD_CSharp.Controllers
 
         public object Nome { get; private set; }
 
-        // original substituido
+        // original substituído
 
         // GET: Usuarios
         //public ActionResult Index() 
@@ -25,8 +25,7 @@ namespace Desafio_CRUD_CSharp.Controllers
         //    return View(db.Usuarios.ToList()); // converte em comando sql select
         //}
 
-
-        // novo ordenação
+        // novo classificação
         public ViewResult Index(string Ordenacao, string searchString, string currentFilter, int? page)
         {
             ViewBag.CurrentSort = Ordenacao;
@@ -52,7 +51,9 @@ namespace Desafio_CRUD_CSharp.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                contatos = contatos.Where(est => est.Nome.ToUpper().Contains(searchString.ToUpper()) || est.Nome.ToUpper().Contains(searchString.ToUpper())); // arrumar
+                contatos = contatos.Where(est => est.Nome.ToUpper().Contains(searchString.ToUpper()) || est.Empresa.ToLower().Contains(searchString.ToUpper())
+                   || est.Email.ToLower().Contains(searchString.ToUpper()) || est.TelefonePessoal.ToString().Contains(searchString) 
+                   || est.TelefoneComercial.ToString().Contains(searchString)); 
             }
 
             switch (Ordenacao)
@@ -107,7 +108,7 @@ namespace Desafio_CRUD_CSharp.Controllers
                         contatos = contatos.OrderBy(est => est.Nome);
                         break;
             }
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(contatos.ToPagedList(pageNumber, pageSize));
         }
