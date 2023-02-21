@@ -79,7 +79,6 @@ namespace Desafio_CRUD_CSharp.Controllers
                      contatos = contatos.OrderByDescending(est => est.Email);
                      break;
 
-                    // não precisa
                 //case "Telefone Pessoal":
                 //    {
                 //        contatos = contatos.OrderBy(est => est.TelefonePessoal);
